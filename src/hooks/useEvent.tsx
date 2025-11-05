@@ -34,7 +34,6 @@ export function useEvent() {
   },[])
 
   const deleteEvent = async (eventId: string) => {
-    console.log("delete");
     
     try {
 
