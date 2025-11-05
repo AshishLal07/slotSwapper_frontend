@@ -1,73 +1,37 @@
-# React + TypeScript + Vite
+# SlotSwapper - Peer-to-Peer Time Slot Scheduling App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern web application that enables users to discover, request, and swap their calendar time slots with other users. Built with React/Next.js frontend and Node.js/Express backend powered by MongoDB.
 
-Currently, two official plugins are available:
+## 🎯 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **User Authentication** - Secure sign-up and login with JWT-based authentication
+- **Calendar Management** - View your events in a clean, organized dashboard
+- **Swappable Slots** - Mark your busy events as "swappable" to offer them to others
+- **Marketplace** - Browse and discover swappable time slots from other users
+- **Swap Requests** - Send and manage swap requests with incoming/outgoing tracking
+- **Real-Time Updates** - Dynamic state management with automatic cache refresh
+- **Protected Routes** - Secure pages that require user authentication
+- **Responsive Design** - Works seamlessly on desktop and mobile devices
 
-## React Compiler
+## 🏗️ Architecture
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Frontend (React/Next.js)
+- **Framework**: Reactjs
+- **Authentication**: Context API + JWT tokens
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🔐 Authentication Flow
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. User signs up or logs in via the auth pages
+2. Backend returns a JWT token
+3. Token is stored in React Context and localStorage
+4. Subsequent API requests include the token in the Authorization header
+5. Token is automatically included in all API calls via the `use-api` hook
+6. Protected routes check for token and redirect to login if not found
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 🔄 State Management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Authentication State**: Managed via React Context (`AuthContext`)
+- **API Data**: Fetched and cached using SWR with 5-second revalidation intervals
+- **Real-Time Updates**: Automatic cache refresh after user actions (create event, accept swap, etc.)
+- **Local Storage**: Auth token persists across page refreshes
