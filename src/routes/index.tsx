@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/auth-context";
 import { getAuthToken } from "../utils/authUtils";
 import Login from "../pages/auth/Login";
 import ProtectedRoutes from "./ProtectedRoutes";
-import Dashboard from "../pages/dashboard/Dashboard";
 import SignUp from "../pages/auth/SignUp";
 
 const RequiredAuth = ({ children }: { children: ReactNode }) => {
