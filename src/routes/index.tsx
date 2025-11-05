@@ -23,7 +23,7 @@ const CustomRoutes = () => {
   <>
   <Router>
     <Routes>
-        <Route path="/auth/signUp" index  element={<SignUp />}></Route>
+        <Route path="/signUp" index  element={<SignUp />}></Route>
 
         <Route path="/login" element={<Login />} />
 

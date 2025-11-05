@@ -9,7 +9,7 @@ import { Icons } from "../../icons/Icons"
 export default function SignupPage() {
   const { signup } = useAuth()
   const navigate = useNavigate()
-  const {ArrowLeftRight} = Icons
+  const { ArrowLeftRight } = Icons
 
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -33,13 +33,13 @@ export default function SignupPage() {
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-      if (e.key === 'Enter') {
-        handleSubmit(e);
-      }
-    };
+    if (e.key === 'Enter') {
+      handleSubmit(e);
+    }
+  };
 
   return (
-  <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
       <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-indigo-600 rounded-full mb-4">
@@ -48,9 +48,9 @@ export default function SignupPage() {
           <h1 className="text-3xl font-bold text-gray-900 mb-2">SlotSwapper</h1>
           <p className="text-gray-600">Peer-to-peer time-slot scheduling</p>
         </div>
-        
+
         <div className="space-y-4">
-             <div>
+          <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               User Name
             </label>
@@ -74,7 +74,7 @@ export default function SignupPage() {
               placeholder="Enter your username"
             />
           </div>
-           <div>
+          <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Password
             </label>
@@ -88,7 +88,7 @@ export default function SignupPage() {
             />
           </div>
 
-           {error && <div className="text-sm text-destructive bg-destructive/10 p-3 rounded">{error}</div>}
+          {error && <div className="text-sm text-destructive bg-destructive/10 p-3 rounded">{error}</div>}
           <button
             type="submit"
             onClick={handleSubmit}
